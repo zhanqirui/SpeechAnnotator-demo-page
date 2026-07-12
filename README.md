@@ -1,2 +1,2 @@
-# MASC-Agent-demo-page
-MASC-Agent: A Context-Aware Multi-Agent Pipeline for Multidimensional Speech Annotation
+# SpeechAnnotator-demo-page
+SpeechAnnotator: A Context-Aware Multi-Agent Framework and Benchmark for Multidimensional Speech Annotation
