@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SpeechAnnotator Demo</title>
+    <meta
+      name="description"
+      content="Demo page for SpeechAnnotator, a context-aware multi-agent framework and benchmark for multidimensional speech annotation."
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="top-nav" aria-label="Page sections">
+      <a href="#abstract">Abstract</a>
+      <a href="#pipeline">Pipeline</a>
+      <a href="#attributes">Attributes</a>
+      <a href="#benchmark">Bench</a>
+      <a href="#results">Results</a>
+      <a href="#audio">Audio Demo</a>
+    </nav>
+
+    <main>
+      <section class="hero">
+        <div class="hero-inner">
+          <p class="kicker">Speech annotation demo page</p>
+          <h1>SpeechAnnotator</h1>
+          <p class="subtitle">
+            A Context-Aware Multi-Agent Framework and Benchmark for
+            Multidimensional Speech Annotation
+          </p>
+          <div class="hero-actions">
+            <a href="#pipeline">View Pipeline</a>
+            <a href="#audio">Audio Placeholders</a>
+          </div>
+          <div class="hero-stats" aria-label="Key results">
+            <div>
+              <strong>8.87 h</strong>
+              <span>SA-Bench audio</span>
+            </div>
+            <div>
+              <strong>15</strong>
+              <span>evaluated attributes</span>
+            </div>
+            <div>
+              <strong>81.27%</strong>
+              <span>attribute macro score</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="abstract" class="section">
+        <div class="section-heading">
+          <span>Abstract</span>
+          <h2>Locally deployable speech annotation with evidence-aware agents.</h2>
+        </div>
+        <div class="abstract-card">
+          <p>
+            Recent controllable speech generation requires fine-grained training
+            data that describes speaker traits, prosody, emotion, paralinguistic
+            cues, acoustic scenes, and surrounding context. Existing workflows
+            often rely on manual correction, paid hosted multimodal services, or
+            fixed processing chains, limiting scalable annotation through cost,
+            external-service dependence, and weak cross-stage recovery.
+          </p>
+          <p>
+            SpeechAnnotator is a locally deployable, context-aware multi-agent
+            framework built from open-source models and tools. Frontend modules
+            construct speaker-aware segments and refined transcripts, prior
+            extractors attach heterogeneous segment-level cues, and three
+            specialist agents coordinate through shared state: Planning creates
+            field-specific contracts, Labeling performs contract-guided
+            multimodal prediction, and Review checks evidence support plus
+            cross-segment consistency through a bounded field-level relabeling
+            loop.
+          </p>
+          <p>
+            The paper also introduces SA-Bench, 8.87 hours of human-annotated
+            audio across nine source formats, and SA-Eval, which separates
+            Timeline-Eval, Closed-Eval, and Open-Eval. Experiments show that
+            SpeechAnnotator provides a competitive local alternative to
+            commercial audio-capable systems while improving multidimensional
+            annotation through evidence- and context-aware recovery.
+          </p>
+        </div>
+      </section>
+
+      <section id="pipeline" class="section pipeline-section">
+        <div class="section-heading">
+          <span>Pipeline</span>
+          <h2>Context-aware multi-agent annotation chain.</h2>
+        </div>
+        <figure class="figure-card wide-figure">
+          <img
+            src="assets/agents-pipeline-1.png"
+            alt="SpeechAnnotator multi-agent pipeline showing frontend modules, prior extractors, planning, labeling, review, and final JSON output."
+          />
+          <figcaption>
+            Link structure from the paper: supporting modules build the segment
+            backbone, prior extractors attach evidence, agents perform planning,
+            labeling, and review, and output modules produce final JSON.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="attributes" class="section">
+        <div class="section-heading">
+          <span>Annotation Schema</span>
+          <h2>Six evidence-oriented groups for audio captioning.</h2>
+        </div>
+        <figure class="figure-card">
+          <img
+            src="assets/audio-captioning.png"
+            alt="Audio Captioning schema with speaker profile, voice quality and articulation, prosody and delivery, affective and paralinguistic cues, acoustic scene, and semantic understanding."
+          />
+          <figcaption>
+            Category description from the paper, including fields and example
+            annotations for a reference segment.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="benchmark" class="section benchmark-section">
+        <div class="section-heading">
+          <span>SA-Bench Distribution</span>
+          <h2>Benchmark coverage across nine source formats.</h2>
+        </div>
+        <figure class="figure-card bench-figure">
+          <img
+            src="assets/bench-category-distribution.png"
+            alt="SA-Bench category distribution pie chart across live commentary, knowledge talks, cartoon, broadcast news, film and review, dialogue and sales, personal monologue, audiobook narration, and political debate."
+          />
+          <figcaption>
+            Distribution of annotated duration across nine source formats in
+            SA-Bench. Slice area indicates each format's share of the 8.87-hour
+            reference timeline.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="results" class="section results-section">
+        <div class="section-heading">
+          <span>Results</span>
+          <h2>Strong timeline recovery and competitive attribute annotation.</h2>
+        </div>
+        <div class="highlight-grid">
+          <article>
+            <span>Timeline recovery</span>
+            <strong>12.42% CER</strong>
+            <p>Lowest character error rate on SA-Bench.</p>
+          </article>
+          <article>
+            <span>Long-context timing</span>
+            <strong>33.69% tcpCER</strong>
+            <p>19.92 points below the strongest commercial baseline.</p>
+          </article>
+          <article>
+            <span>Attribute macro score</span>
+            <strong>81.27%</strong>
+            <p>Second overall under fixed-timeline evaluation.</p>
+          </article>
+          <article>
+            <span>Best fields</span>
+            <strong>7 / 15</strong>
+            <p>Top score on tone, pitch, speed, rhythm, texture, pronunciation, and paralinguistic cues.</p>
+          </article>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <caption>Speaker-aware timeline results on SA-Bench. Lower is better.</caption>
+            <thead>
+              <tr>
+                <th>System</th>
+                <th>CER lower</th>
+                <th>cpCER lower</th>
+                <th>tcpCER lower</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>SpeechAnnotator</th>
+                <td>12.42</td>
+                <td>28.16</td>
+                <td>33.69</td>
+              </tr>
+              <tr>
+                <th>MOSS-Transcribe-Diarize</th>
+                <td>12.84</td>
+                <td>28.70</td>
+                <td>34.08</td>
+              </tr>
+              <tr>
+                <th>Seed2.0 Lite</th>
+                <td>13.90</td>
+                <td>33.62</td>
+                <td>53.61</td>
+              </tr>
+              <tr>
+                <th>Qwen3.5-Omni-plus</th>
+                <td>14.17</td>
+                <td>26.31</td>
+                <td>56.25</td>
+              </tr>
+              <tr>
+                <th>Gemini 3.1 Pro Preview</th>
+                <td>23.06</td>
+                <td>42.58</td>
+                <td>67.18</td>
+              </tr>
+              <tr>
+                <th>Gemini 2.5 Pro</th>
+                <td>20.51</td>
+                <td>37.80</td>
+                <td>69.59</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="ablation">
+          <h3>Ablation summary</h3>
+          <p>
+            Context-aware planning, prior evidence, and the bounded review loop
+            contribute 1.48, 1.20, and 0.85 points respectively to the average
+            attribute score, showing that the system benefits from both local
+            acoustic evidence and long-context consistency checks.
+          </p>
+        </div>
+      </section>
+
+      <section id="audio" class="section audio-section">
+        <div class="section-heading">
+          <span>Audio Demo</span>
+          <h2>One-minute continuous excerpts with synchronized metadata.</h2>
+        </div>
+        <p class="audio-note">
+          Each player uses a long source recording and plays one selected
+          continuous 60-second window. The metadata panel is synchronized to
+          the active segment, and every segment below exposes its text and full
+          metadata fields for inspection.
+        </p>
+        <div id="audio-demo-root" class="audio-demo-root"></div>
+      </section>
+    </main>
+    <script src="audio-demo.js"></script>
+  </body>
+</html>
